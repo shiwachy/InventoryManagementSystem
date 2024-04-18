@@ -1,0 +1,81 @@
+<!-- Button trigger modal -->
+<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal"
+    (click)="onClickOpenModal('addItemModal')">
+    Add New Item
+</button>
+
+<!-- Modal -->
+<div class="modal fade" id="addItemModal">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="addItemModalLabel" *ngIf="!addItemService.isUpdatable">Add New Item</h5>
+                <h5 class="modal-title" id="addItemModalLabel" *ngIf="addItemService.isUpdatable">Update Item</h5>
+            </div>
+            <div class="modal-body">
+                <div class="container">
+                    <div class="formAddItem">
+                        <form #itemDetail="ngForm" (ngSubmit)="onClickAddItem(itemDetail)">
+                            <div class="form-group">
+                                <label for="itemId">Item Id</label>
+                                <input type="text" ngModel [(ngModel)]="addItemService.itemToUpdate.itemId" class="form-control" id="itemId" name="itemId"
+                                    placeholder="Enter item Id">
+                            </div>
+                            <div class="form-group">
+                                <label for="fullName">Item Code</label>
+                                <input type="text" ngModel [(ngModel)]="addItemService.itemToUpdate.itemCode" class="form-control" id="itemCode" name="itemCode"
+                                    placeholder="Item Code">
+                            </div>
+                            <div class="form-group">
+                                <label for="userName">Item Name</label>
+                                <input type="text" ngModel [(ngModel)]="addItemService.itemToUpdate.itemName" class="form-control" id="itemName" name="itemName"
+                                    placeholder="Enter Item Name">
+                            </div>
+                            <div class="form-group">
+                                <label for="role">Brand Name</label>
+                                <input type="text" ngModel [(ngModel)]="addItemService.itemToUpdate.brandName" class="form-control" id="brandName" name="brandName"
+                                    placeholder="Enter BrandName">
+                            </div>
+                            <div class="form-group">
+                                <label for="role">unitOfMeasurement</label>
+                                <input type="text" ngModel [(ngModel)]="addItemService.itemToUpdate.unitOfMeasurement" class="form-control" id="unitOfMeasurement" name="unitOfMeasurement"
+                                    placeholder="Enter unitOfMeasurement">
+                            </div>
+                            <div class="form-group">
+                                <label for="role">Purchase Rate</label>
+                                <input type="number" ngModel [(ngModel)]="addItemService.itemToUpdate.purchaseRate" class="form-control" id="purchaseRate" name="purchaseRate"
+                                    placeholder="Enter Purchase Rate">
+                            </div>
+                            <div class="form-group">
+                                <label for="role">Sales Rate</label>
+                                <input type="number" ngModel [(ngModel)]="addItemService.itemToUpdate.salesRate" class="form-control" id="salesRate" name="salesRate"
+                                    placeholder="Enter Sales Rate">
+                            </div>
+                            <div class="form-check">
+                                <label class="form-check-label" for="isActive">Is Active</label>
+                                <input type="checkbox" ngModel [(ngModel)]="addItemService.itemToUpdate.isActive" class="form-check-input" name="isActive" id="isActive">
+                            </div>
+                            <div class="form-group">
+                                <button type="submit" class="btn btn-primary" *ngIf="!addItemService.isUpdatable">Add</button>
+                                <button type="submit" class="btn btn-primary" *ngIf="addItemService.isUpdatable" (click)="onUpdateClick()">Update</button>
+                                <button type="reset" class="btn btn-success">Clear</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal"
+                    (click)="onClickCloseModal('addItemModal')">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<ag-grid-angular class="empGrid ag-theme-quartz"
+    style="height: 500px;" 
+    [rowData]="addItemService.itemList"
+    [columnDefs]="empListColDefs" 
+    [defaultColDef]="defaultColdefs">
+</ag-grid-angular>

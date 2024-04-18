@@ -1,0 +1,9 @@
+
+<nav class="navbar navbar-light bg-light sticky-top">
+    <form class="form-inline">
+      <button class="btn btn-sm btn-outline-secondary" type="button" [routerLinkActive]="'active'" [routerLink]="['/home/warehouse/add-item']">ITEM</button>
+      <button class="btn btn-sm btn-outline-secondary" type="button" [routerLinkActive]="'active'" [routerLink]="['/home/warehouse/stores']">STORE</button>
+      <button class="btn btn-sm btn-outline-secondary" type="button" [routerLinkActive]="'active'" [routerLink]="['/home/warehouse/stock']">STOCK</button>
+    </form>
+</nav>
+<router-outlet></router-outlet>

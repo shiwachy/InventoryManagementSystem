@@ -1,0 +1,55 @@
+<!-- Button trigger modal -->
+<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal"
+    (click)="onClickOpenModal('createStoreModal')">
+    Create New Store
+</button>
+
+<!-- Modal -->
+<div class="modal fade" id="createStoreModal">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="createStoreModalLabel" *ngIf="!storesService.isUpdatable">Create New Store</h5>
+                <h5 class="modal-title" id="createStoreModalLabel" *ngIf="storesService.isUpdatable">Update Store</h5>
+            </div>
+            <div class="modal-body">
+                <div class="container">
+                    <div class="formAddItem">
+                        <form #storeDetail="ngForm" (ngSubmit)="onClickAddStore(storeDetail)">
+                            <div class="form-group">
+                                <label for="storeId">Store Id</label>
+                                <input type="text" ngModel [(ngModel)]="storesService.storeToUpdate.storeId" class="form-control" id="storeId" name="storeId"
+                                    placeholder="Enter Store Id">
+                            </div>
+                            <div class="form-group">
+                                <label for="fullName">Store Name</label>
+                                <input type="text" ngModel [(ngModel)]="storesService.storeToUpdate.storeName" class="form-control" id="storeName" name="storeName"
+                                    placeholder="Enter Store Name">
+                            </div>
+                            <div class="form-check">
+                                <label class="form-check-label" for="isActive">Is Active</label>
+                                <input type="checkbox" ngModel [(ngModel)]="storesService.storeToUpdate.isActive" name="isActive" class="form-check-input" id="isActive">
+                            </div>
+                            <div class="form-group">
+                                <button type="submit" class="btn btn-primary" *ngIf="!storesService.isUpdatable">Add</button>
+                                <button class="btn btn-primary" *ngIf="storesService.isUpdatable" (click)="onClickUpdateStore()">Update</button>
+                                <button type="reset" class="btn btn-success">Clear</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal"
+                    (click)="onClickCloseModal('createStoreModal')">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<ag-grid-angular class="empGrid ag-theme-quartz" style="height: 500px;"
+    [rowData]="storesService.storeList"
+    [columnDefs]="empListColDefs" 
+    [defaultColDef]="defaultColdefs">
+</ag-grid-angular>

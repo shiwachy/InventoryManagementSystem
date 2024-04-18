@@ -1,0 +1,66 @@
+<!-- Button trigger modal -->
+<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#createStockModal"
+    (click)="onClickOpenModal('createStockModal')">
+    Create New Stock
+</button>
+
+<!-- Modal -->
+<div class="modal fade" id="createStockModal">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="createStockModalLabel" *ngIf="!stockService.isUpdatable">Create New Stock
+                </h5>
+                <h5 class="modal-title" id="createStockModalLabel" *ngIf="stockService.isUpdatable">Update Stock</h5>
+            </div>
+            <div class="modal-body">
+                <div class="container">
+                    <div class="formAddItem">
+                        <form #stockDetail="ngForm" (ngSubmit)="onClickAddStock(stockDetail)">
+                            <div class="form-group">
+                                <label for="srockId">Stock Id</label>
+                                <input type="text" ngModel [(ngModel)]="stockService.stockToUpdate.stockId" class="form-control" id="stockId" name="stockId"
+                                    placeholder="Enter Stock Id">
+                            </div>
+                            <div class="form-group">
+                                <label for="fullName">Store ID</label>
+                                <input type="text" ngModel [(ngModel)]="stockService.stockToUpdate.storeId" class="form-control" id="storeId" name="storeId"
+                                    placeholder="Enter Store Name">
+                            </div>
+                            <div class="form-group">
+                                <label for="fullName">Item ID</label>
+                                <input type="text" ngModel [(ngModel)]="stockService.stockToUpdate.itemId" class="form-control" id="itemId" name="itemId"
+                                    placeholder="Enter Store Name">
+                            </div>
+                            <div class="form-group">
+                                <label for="fullName">Quantity</label>
+                                <input type="number" ngModel [(ngModel)]="stockService.stockToUpdate.quantity" class="form-control" id="quantity" name="quantity"
+                                    placeholder="Enter Store Name">
+                            </div>
+                            <div class="form-group">
+                                <label for="fullName">Expiary Date</label>
+                                <input type="date" ngModel [(ngModel)]="stockService.stockToUpdate.expiaryDate" class="form-control" id="expDate" name="expiaryDate"
+                                    placeholder="Enter Store Name">
+                            </div>
+                            <div class="form-group">
+                                <button type="submit" *ngIf="!stockService.isUpdatable"
+                                    class="btn btn-primary">Add</button>
+                                <button *ngIf="stockService.isUpdatable" (click)="onUpdateClick()" class="btn btn-primary">Update</button>
+                                <button type="reset" class="btn btn-success">Clear</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal"
+                    (click)="onClickCloseModal('createStockModal')">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<ag-grid-angular class="empGrid ag-theme-quartz" style="height: 500px;" [rowData]="stockService.stockList"
+    [columnDefs]="empListColDefs" [defaultColDef]="defaultColdefs">
+</ag-grid-angular>

@@ -1,0 +1,56 @@
+﻿@page
+@model InventoryManagement.Pages.indexModel
+
+@{
+    ViewData["Title"] = "index";
+}
+
+<h1>index</h1>
+
+<p>
+    <a asp-page="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.TblUsersInfo[0].FullName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.TblUsersInfo[0].UserName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.TblUsersInfo[0].Password)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.TblUsersInfo[0].Role)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.TblUsersInfo[0].IsActive)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model.TblUsersInfo) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.FullName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.UserName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Password)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Role)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.IsActive)
+            </td>
+            
+        </tr>
+}
+    </tbody>
+</table>

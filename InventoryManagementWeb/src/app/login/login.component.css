@@ -1,0 +1,15 @@
+.container{
+    /* background-color: red; */
+    width: 100%;
+    height: 560px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.loginForm{
+    background-color: rgb(215 221 220);
+    height: 300px;
+    width: 340px;
+    padding: 30px;
+    border-radius: 10px;
+}

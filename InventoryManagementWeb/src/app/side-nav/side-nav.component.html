@@ -1,0 +1,15 @@
+
+<div class="container">
+    <h2>Inventory Management</h2>
+    <nav class="side-nav" *ngIf="role=='admin'">
+        <a [routerLinkActive]="'active'" [routerLink]="['/home']">HOME</a><br>
+        <a [routerLinkActive]="'active'" [routerLink]="['/home/admin']">ADMIN</a><br>
+        <a [routerLinkActive]="'active'" [routerLink]="['/home/warehouse']">WareHouse</a><br>
+        <a href="javascript:void(0)" (click)="logoutSure()">Logout</a>
+    </nav>
+    <nav class="side-nav" *ngIf="role=='user'">
+        <a [routerLinkActive]="'active'" [routerLink]="['/home']">HOME</a><br>
+        <a [routerLinkActive]="'active'" [routerLink]="['/home/warehouse']">WareHouse</a><br>
+        <a href="javascript:void(0)" (click)="logoutSure()">Logout</a>
+    </nav>
+</div>

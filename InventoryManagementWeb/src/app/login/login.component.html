@@ -1,0 +1,17 @@
+<div class="container">
+    <div class="loginForm">
+        <form #userDetail="ngForm" (ngSubmit)="getValidUser(userDetail)">
+            <div class="form-group">
+                <label for="exampleInputEmail1">User Name</label>
+                <input type="email" class="form-control" name="userName" aria-describedby="emailHelp"
+                    placeholder="Enter User Name" ngModel>
+            </div><br>
+            <div class="form-group">
+                <label for="exampleInputPassword1">Password</label>
+                <input type="text" class="form-control" name="password" placeholder="Password" ngModel>
+            </div><br>
+            <button type="submit" class="btn btn-primary">Login</button>
+        </form>
+        <span><a href="#">Forgot Password ?</a></span>
+    </div>
+</div>
